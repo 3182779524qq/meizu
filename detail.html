@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/detail.css" />
+		<link rel="Shortcut Icon" href="https://www3.res.meizu.com/static/cn/global/images/favicon_2e71785.ico" type="image/x-icon">
+		<!--<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>-->
+	</head>
+	<body>
+		<div class="de_nav">
+			<ul>
+				<li class="mar"><a href=""><h2>魅族16th</h2></a></li>
+				<li><a href="#">首页</a></li>
+				<li><a href="#">概述</a></li>
+				<li><a href="#">性能</a></li>
+				<li><a href="#">相机</a></li>
+				<li><a href="#">参数</a></li>
+				<li><a href="#">常见问题</a></li>
+				
+			</ul>
+		</div>
+		
+		<div class="content">
+			<div class="phone_left">
+				<div class="phone_big" id="phone_big"><img src="img/blue_1.jpg" width="560px" />
+					<div id="phone_big_big"><img src="img/blue_1.jpg" width="1120px" /></div>
+					<div id="mask"></div>
+				</div>
+
+				<ul class="phone_small" id="phone_small">
+					<li class="on"><img src="img/blue_1.jpg" width="80" /></li>
+					<li><img src="img/blue_2.jpg" width="80" class="img1" /></li>
+					<li><img src="img/blue_3.jpg" width="80" /></li>
+					<li><img src="img/blue_4.jpg" width="80" /></li>
+				</ul>
+			</div>
+			<div class="phone_right" id="phone_right">
+				<h3>魅族16th</h3>
+				<p>骁龙845 屏下指纹</p>
+				<span id="price">￥2798</span>
+				<hr />
+				<dl id="model">
+					<dt>型号</dt>
+					<dd><ul>
+						<li id="15"><a href="#">魅族15</a></li>
+						<li id="m15"><a href="#">魅族M15</a></li>
+						<li id="m15plus"><a href="#">魅族15plus</a></li>
+						<li id="16th" class="onId"><a href="#">魅族16th</a></li>
+						<li id="16thPlus"><a href="#">魅族16th Plus</a></li>
+						<li id="16X"><a href="#">魅族16X</a></li>
+					</ul></dd>
+				</dl>
+				<dl>
+					<dt>网络类型</dt>
+					<dd><ul>
+						<li><a href="#">全网通公开版</a></li>
+					</ul></dd>
+				</dl>
+				<dl>
+					<dt>颜色分类</dt>
+					<dd><ul id="color">
+						<li id="black"><a href="#">静夜黑</a></li>
+						<li id="white"><a href="#">远山白</a></li>
+						<li id="blue" class="onId"><a href="#">极光蓝</a></li>
+					</ul></dd>
+				</dl>
+				<dl id="type">
+					<dt>内存容量</dt>
+					<dd><ul>
+						<li id="6+64GB" class="onId"><a href="#" >6+64GB</a></li>
+						<li id="6+128GB"><a href="#">6+128GB</a></li>
+						<li id="8+128GB"><a href="#">8+128GB</a></li>
+					</ul></dd>
+				</dl>
+				<dl>
+					<dt>选择套餐</dt>
+					<dd><ul>
+						<li><a href="#">官方标配</a></li>
+						<!--<li><a href="#">碎屏套餐 省12.9元</a></li>-->
+					</ul></dd>
+				</dl>
+			</div>
+			
+		</div>
+		<!--加入购物车-->
+		<div class="addCar" id="addCar">
+			<a>加入购物车</a>
+		</div>
+	</body>
+</html>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+var color ="blue";
+var model ="16th";
+var type ="6+64GB";
+var indexx = 1;
+//  $("#color li").click(function(){
+////  	console.log("aaa");
+//  	var str = `img/${color}_${indexx}.jpg`;
+//  	$("#phone_big img").attr("src",str);
+//  	
+//  	for(var i=1;i<=4;i++){
+//  		var strMini = `img/${color}_${i}.jpg`;	
+//  		$("#phone_small img").eq(i-1).attr("src",strMini);    		
+//  	}
+//  	console.log(strMini);
+//  });
+	$("#phone_small li").click(function(){
+		var index = $(this).index();
+		var indexx = index+1;
+		$(this).attr("class","on").siblings().attr("class","");
+		var str = `img/${color}_${indexx}.jpg`;
+		$("#phone_big img").attr("src",str);
+		
+	});
+
+
+
+
+//	var arr=[];
+//	window.onload=function () {
+//		$("#phone_right li").click(function () {});
+//	}
+	$("#phone_right li").click(function () {
+//		var bd=this.id;
+//		arr.push(bd)
+//		console.log(bd);
+		$(this).addClass("onId").siblings().removeClass();
+		model=$("#model").find(".onId").attr("id");
+		color=$("#color").find(".onId").attr("id");
+		type=$("#type").find(".onId").attr("id");
+		var str = `img/${color}_${indexx}.jpg`;
+    	$("#phone_big img").attr("src",str);
+    	
+    	for(var i=1;i<=4;i++){
+    		var strMini = `img/${color}_${i}.jpg`;	
+    		$("#phone_small img").eq(i-1).attr("src",strMini);    		
+    	}
+		$.ajax({
+			type:"get",
+			url:"detail.php",
+			data:{
+				model:model,
+				color:color,
+				type:type,
+			},
+//			timeout: 30000,
+			success:function(res){
+				console.log(res);
+				var flag = true;
+				var resArr=res.split("&");
+				var sres="￥"+resArr[0];
+				$("#price").html(sres);
+				console.log(resArr[1]);
+				$("#addCar").click(function () {
+//					alert(typeof(location.search))
+//					console.log(location.search);
+					if(location.search==""){
+//						flag =false;
+//						console.log("1");
+//						alert("请先登录");
+//						console.log("3");
+//						var dl=confirm("请先登录");
+//						if(dl){
+//						location.href="login/login.html?Id="+resArr[1];
+//							
+//						}
+						location.href="login/login.html?Id="+resArr[1];
+//						console.log("2");
+//						return false;
+					}else{
+						alert("eee");
+					}
+//					if(flag==false){
+//						alert("请先登录");
+//						location.href="login/login.html?Id="+resArr[1];
+//						flag = true;
+//					}
+//					return false;
+				});
+			},
+	//		error:function(){},
+		})
+		return false;
+	})
+
+	
+	//放大镜
+	var mask=document.getElementById("mask");
+	var big=document.getElementById("phone_big_big");
+	var small=document.getElementById("phone_big");
+	var img=document.getElementsByTagName("img")[1];
+	small.onmouseover=function () {
+		small.style.cursor="no-drops";
+		mask.style.display="block";
+		big.style.display="block";
+		document.onmousemove=function (e) {
+			var e=e||window.event;
+			var l=e.pageX-small.offsetLeft-140;
+			var t=e.pageY-small.offsetTop-140;
+			l<0?l=0:(l>280?l=280:l=l);
+			t<0?t=0:(t>280?t=280:t=t);
+			mask.style.top=t+"px";
+			mask.style.left=l+"px";
+			img.style.left=-l*2+"px";
+			img.style.top=-t*2+"px";
+		}
+		small.onmouseout=function () {
+			mask.style.display="none";
+			big.style.display="none";
+			mask.onmousemove=null;
+		}
+	}
+	
+</script>
+
+<!--var html = "";
+				var resArr=res.split(",");
+				for (var i=1;i<resArr.length;i++) {
+					var resArrMin=res.split("&");
+					var str = `<tr>
+									<td class="one"><input type="checkbox" class="text" name="sl" /><a class="text"><img id="img" src="../img/phone_2.png" width="100"/></a><a class="text"><p id="model">${resArrMin[0]}</p><p id="type">${resArrMin[1]}</p></a></td>
+									<td class="two">单价<span class="price">￥${resArrMin[2]}</span>（元）</td>
+									<td class="three"><div class="num"><button>-</button> <span class="phoneNum">${resArrMin[4]}</span> <button>+</button></div></td>
+									<td class="four">小计<span class="price">￥${resArrMin[2]}</span>（元）</td>
+									<td class="five">--</td>
+								</tr>`;
+				}-->

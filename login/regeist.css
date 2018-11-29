@@ -1,0 +1,139 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.contain{
+	width: 1200px;
+}
+.header{
+	width: 1200px;
+	height: 68px;
+	margin: 0 auto;
+	/*background: yellow;*/
+	/*line-height: 68px;*/
+	overflow: hidden;
+}
+.banner{
+	position: relative;
+	width: 100%;
+	height: 750px;
+	background: url(../img/login_banner.png) no-repeat;
+	background-size: 100%;
+}
+.footer{
+	width: 1200px;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+.footer p{
+	font-size: 14px;
+	color: #BFBFBF;
+	margin: 20px 0;
+}
+.footer li{
+	float: left;
+	list-style: none;
+}
+.footer li a{
+	font-size: 14px;
+	margin: 0 10px;
+	color: black;
+	text-decoration: none;
+}
+.hot_line{
+	margin-left: 50px;
+}
+.onLine{
+	display: inline-block;
+	text-align: center;
+	margin-left: 30px;
+	background: #32A5E7;
+	color: #FFFFFF;
+	border-radius: 5px;
+	width: 80px;
+	height: 20px;
+}
+.login{
+	position: absolute;
+	background: #FFFFFF;
+	left: 50%;
+	top: 150px;
+	width: 370px;
+	height: 515px;
+}
+#login{
+	width: 300px;
+	height: 50px;
+	margin: 0 auto;
+	border: 1px solid #C0C0C0;
+}
+#login input{
+	border: 0;
+	padding-left: 8px;
+	outline: none;
+	line-height: 50px;
+	font-size: 18px;
+}
+.banner h3{
+	margin-top: 50px;
+	text-align: center;
+	color: #32A5E7;
+	margin-bottom: 70px;
+}
+#phone{
+	float: left;
+	width: 70px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-right: 1px solid #C0C0C0;
+}
+#test{
+	width: 300px;
+	height: 50px;
+	margin:40px auto;
+	text-align: center;
+	border: 1px solid #C0C0C0;
+	line-height: 40px;
+}
+#test input{
+	border: 0;
+	padding-left: 8px;
+	outline: none;
+	line-height: 50px;
+	font-size: 18px;
+}
+.login p{
+	width: 300px;
+	margin-left: 35px;
+}
+#btn{
+	width: 300px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #FFFFFF;
+	background: #32A5E7;
+	margin: 10px auto;
+}
+#btn:hover{
+	cursor: pointer;
+}
+span a{
+	color: #32A5E7;
+	padding-left: 35px;
+	text-decoration: none;
+}
+.logo{
+	width: 110px;
+	height: 20px;
+	background: url(../img/base_logo.png) no-repeat;
+	/*line-height: ;*/
+	margin-top: 24px;
+}
+.mini{
+	font-size: 12px;
+}
+.blue{
+	color: #32A5E7;
+}

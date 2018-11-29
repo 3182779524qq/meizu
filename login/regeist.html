@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Flyme 账号-注册</title>
+		<link rel="Shortcut Icon" href="https://www3.res.meizu.com/static/cn/global/images/favicon_2e71785.ico" type="image/x-icon">
+		<link rel="stylesheet" href="regeist.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<a href="index.html"><h1 class="logo"></h1></a>
+		</div>
+		
+		<div class="banner">
+			<div class="login">
+				<h3>注册 Flyme 账号</h3>
+				<div id="login">
+					<div id="phone">+86></div>
+					<input type="text" placeholder="手机号码" />
+				</div>
+				<div id="test">
+					<input type="password" placeholder="密码" />
+				</div>
+				<p class="mini">点击立即注册，即代表您同意并遵守<span class="blue">Flyme服务协议 </span>和<span class="blue">法律声明</span></p>
+				<div id="btn">立即注册</div>
+				<span><a href="#">登录</a></span>
+			</div>
+		</div>
+		
+		
+		<div class="footer">
+			<div style="margin-bottom: 30px;">
+				<ul>
+					<li><a href="#">关于魅族</a></li>
+					<li>|</li>
+					<li><a href="#">工作机会</a></li>
+					<li>|</li>
+					<li><a href="#">联系我们</a></li>
+					<li>|</li>
+					<li><a href="#">法律声明</a></li>
+					<li>|</li>
+					<li><a href="#">常见问题</a></li>
+					<li>|</li>
+					<li><a href="#">简体中文</a></li>
+				</ul>
+				<span class="hot_line">客服热线&ensp;400-788-3333</span>
+				<span class="onLine">在线客服</span>
+				<div>
+					
+				</div>
+			</div>
+			<p>©2018 Meizu Telecom Equipment Co., Ltd. All rights reserved.备案号: 粤ICP备13003602号-4经营许可证编号: 粤B2-20130198营业执照</p>
+		</div>
+	</body>
+</html>
+<script>
+	$("#btn").click(function () {
+		$.ajax({
+			type:"post",
+			url:"regeist.php",
+			data:{
+				Uname : $(":text").val(),
+				Upwd : $(":password").val()
+			},
+			success:function(res){
+				if(res=="0"){
+					alert("用户名已存在");
+				}else{
+					location.href=res;					
+				}
+//				alert("注册成功");
+			},
+			error:function(){
+//				alert("用户名已存在")
+//				location.href="regeist.html";
+			},
+		})
+	})
+</script>

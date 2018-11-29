@@ -1,0 +1,160 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+img{
+	display: block;
+}
+li{
+	list-style: none;
+}
+a{
+	color: #CCCCCC;
+	text-decoration: none;
+}
+
+
+/*详情nav*/
+.de_nav{
+	width: 100%;
+	/*margin: 0 auto;*/
+	background: #1E90FF;
+}
+.de_nav ul{
+	width: 1240px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.de_nav ul li{
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	margin-left: 8px;
+}
+.de_nav ul li a{
+	display: block;
+	/*line-height: 20px;*/
+	/*border-right: 1px solid #CCCCCC;*/
+}
+.mar{
+	margin-right: 800px;
+}
+
+/*商品*/
+.content{
+	width: 1240px;
+	margin: 0 auto;
+	overflow: hidden;
+	
+}
+.phone_left{
+	width: 560px;
+	height: 730px;
+	/*background: yellow;*/
+	float: left;
+}
+.phone_big{
+	width: 560px;
+	height: 560px;
+	position: relative;
+}
+#phone_big_big{
+	position: absolute;
+	top: 0;
+	left: 610px;
+	width: 560px;
+	height: 560px;
+	overflow: hidden;
+	display: none;
+}
+#mask:hover{
+	cursor: all-scroll;
+}
+#phone_big_big img{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+#mask{
+	width: 280px;
+	height: 280px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(137,124,55,0.5);
+	display: none;
+}
+.phone_left .phone_small{
+	display: flex;
+	justify-content: space-around;
+}
+.on{
+	box-shadow:0 15px 30px rgba(0,0,0,.1);
+}
+.phone_right{
+	width: 680px;
+	height: 730px;
+	/*background: pink;*/
+	float: right;
+	overflow: hidden;
+	
+}
+dl{
+	display: block;
+	border: 1px solid red;
+	overflow: hidden;
+	/*margin-bottom: 10px;*/
+	padding: 10px;
+	overflow: hidden;
+}
+dl:hover{
+	cursor: no-drop;
+}
+dt{
+	float: left;
+	line-height: 60px;
+}
+dd ul{
+	/*padding: 10px;*/
+	/*display: flex;*/
+	float: right;
+	/*background: yellow;*/
+	width: 580px;
+	/*flex-flow: wrap;*/
+	float: right;
+	justify-content: center;
+}
+dd ul li{
+	float: left;
+	margin: 10px;
+	/*justify-content: center;*/
+	border: 1px solid #32A5E7;
+	border-radius: 5px;
+	padding: 10px 20px;
+	text-align: center;
+	flex: 30%;
+}
+
+
+.onId{
+	border: 1px solid #000;
+}
+#price{
+	color: red;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/*加入购物车*/
+.addCar{
+	width: 150px;
+	height: 50px;
+	background: #32A5E7;
+	color: #FFFFFF;
+	line-height: 50px;
+	text-align: center;
+	margin: 0 auto;
+}
+.addCar:hover{
+	cursor: pointer;
+}

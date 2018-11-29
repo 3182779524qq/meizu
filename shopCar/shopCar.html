@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="shopCar.css" />
+	</head>
+	<body>
+		<div class="nav">
+			<a href="../index.html" class="logo"></a>
+			<div class="step">
+				<span class="on">购物车</span>
+				>
+				<span>确认订单</span>
+				>
+				<span>在线支付</span>
+				>
+				<span>完成</span>
+				
+			</div>
+			
+			<div class="myOrder">
+				<div class="my">
+					我的订单
+				</div>
+				<ul class="notFound">
+					<li><a href="../login/login.html">登录</a></li>
+					<li><a href="../login/regeist.html">注册</a></li>
+				</ul>
+				<ul class="market">
+					<li><a href="#">用户<span id="hi"></span> 的商城</a></li>
+					<li><a href="#">地址管理</a></li>
+					<li><a href="#">我的收藏</a></li>
+					<li><a href="#">我的收藏</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--订单列表-->
+		<div class="list" id="list">
+			<table class="phone_list" >
+				<tr><td class="one"><input type="checkbox" name="all">全选</td><td class="two">单价（元）</td><td class="three">数量</td><td class="four">小计（元）</td><td class="five">编辑</td></tr>
+			</table>
+			<div class="mz">魅族    已免邮费</div>
+			<ul class="mz">
+				<li>
+					<table class="phone_list" >
+						<tr><td class="one"><input type="checkbox" class="text" name="sl" /><a class="text"><img id="img" src="../img/phone_2.png" width="100"/></a><a class="text"><p id="model">name</p><p id="type">detail</p></a></td><td class="two">单价<span class="price"></span>（元）</td><td class="three"><div class="num"><button>-</button> <span>1</span> <button>+</button></div></td><td class="four">小计<span class="price"></span>（元）</td><td class="five">--</td></tr>
+					</table>
+				</li>
+			</ul>
+			
+			<!--pay-->
+			<div class="pay">
+				<!--<sapn><input type="checkbox" name="all" />  全选</sapn>-->
+				<span class="del"><a href="#">删除选中的商品</a></span>
+				<span class="totalPhone">共1件商品，已选择<span id="num">0</span>件</span>
+				<span class="total">合计（不含运费）：</span>
+				<span class="red">￥</span>
+				<span class="goPay">去结算</span>
+			</div>
+		</div>
+		<!--未登录-->
+		<div class="list_not" id="list_not">
+			<div class="con_not">
+				<div class="not_img"><img src="../img/notFound.png" width="100" /></div>
+				<h3>您购物车里已经空空哦</h3>
+				<p>加入购物车的商品将会在这里显示~</p>
+				<a href="../index.html" class="go">去逛逛</a>
+			</div>
+		</div>
+		
+		
+		<div class="footer">
+			<div class="foot_top">
+				<ul>
+					<li><a href="#"><img src="../img/foot_1.png" width="50" />全场顺丰包邮</a></li>
+					<li><a href="#"><img src="../img/foot_2.png" width="50" />100+城市次日送达</a></li>
+					<li><a href="#"><img src="../img/foot_3.png" width="50" />7天无理由退换货</a></li>
+					<li><a href="#"><img src="../img/foot_4.png" width="50" />15天换货保证</a></li>
+					<li><a href="#"><img src="../img/foot_5.png" width="50" />1年免费保修</a></li>
+					<li><a href="#"><img src="../img/foot_6.png" width="50" />上门快修</a></li>
+				</ul>
+				<div class="foot_top_right">
+					<p>周一至周日7:30-24:00</p>
+					<p class="blue">400-788-3333</p>
+					<span>在线客服</span>
+				</div>
+			</div>
+			
+			<div class="foot_bottom">
+				<ul>
+					<li><a href="#">了解魅族</a></li>
+					<li><a href="#">加入我们</a></li>
+					<li><a href="#">联系我们</a></li>
+					<li><a href="#">Flyme</a></li>
+					<li><a href="#">魅族社区</a></li>
+					<li><a href="#">天猫旗舰店</a></li>
+					<li><a href="#">问题反馈</a></li>
+					<li><a href="#">线上销售授权名单公示</a></li>
+					<li><a href="#">出版物经营许可证</a></li>
+					<li><a href="#">简体中文</a></li>
+				</ul>
+				<p>©2018 Meizu Telecom Equipment Co., Ltd. All rights reserved. <i>粤ICP备13003602号</i> <i>合字B2-20170010</i> <i>营业执照</i> <i>法律声明</i>  粤公网安备 44049102496009 号   </p>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+	//?Id=3&Uname=tom
+	var hi = document.getElementById("hi");
+	var na = location.href.split("&")[1].split("=")[1];
+	na=decodeURI(na);
+	if(na&&na!="undefined"){
+		hi.innerText=na;
+		hi.style.color="#FF5500";
+		var phoneId=location.href.split("&")[0].split("=")[1];
+		if(phoneId){
+			$(".list_not").hide();
+			$(".list").show();
+		}
+		$.ajax({
+			type:"get",
+			url:"shopCar.php",
+			data:{
+				Uname:na,
+				Id:phoneId,
+			},
+			success:function(res){
+				var resArr=res.split("&");
+				var model="魅族"+resArr[0];
+				var type=resArr[1];
+				var price="￥"+resArr[2];
+				var color=resArr[3];
+				$("#model").html(model);
+				$("#type").html(type);
+				$(".price").html(price);
+				switch(color){
+					case "极光蓝":
+					color="blue";
+					break;
+					case "远山白":
+					color="white";
+					break;
+					case "静夜黑":
+					color="black";
+					break;
+				}
+				$("#img").attr("src",`../img/${color}_1.jpg`);
+				console.log(color);
+//				console.log(res);
+			}
+//			error:function(){},
+		});
+	}else if(na=="undefined"){
+		
+	}
+	
+	
+	$("input[name='all']").click(function(){
+		$("input[name='sl']").prop("checked",$(this).prop("checked"));
+		var count=0;
+		for(var i=0;i<$("input[name='sl']").length;i++){
+			if($("input[name='sl']").eq(i).prop("checked")){
+				count++;
+			}
+			if(count!=0){
+//				$(".red").html(price);
+				$.ajax({
+							type:"get",
+							url:"shopCar.php",
+							data:{
+								Id:phoneId,
+							},
+							success:function(res){
+								var resArr=res.split("&");
+								var model="魅族"+resArr[0];
+								var type=resArr[1];
+								var price="￥"+resArr[2];
+								$(".red").html(price);
+							}
+				//			error:function(){},
+						});
+			}else{
+				$(".red").html("￥");
+			}
+		};
+//		console.log(count);
+		$("#num").html(count);
+		
+		
+//		var num=$("input[name='sl']").length;
+	});
+	$("input[name='sl']").click(function(){
+		var flag = true;
+		$("input[name='sl']").each(function(item,index){
+			if($(index).prop("checked") == false){
+				flag = false;
+			};
+		});
+		if(flag){
+			$("input[name='all']").prop("checked",true);
+		}else{
+			$("input[name='all']").prop("checked",false);
+		}
+		
+		var count=0;
+		for(var i=0;i<$("input[name='sl']").length;i++){
+			if($("input[name='sl']").eq(i).prop("checked")){
+				count++;
+			}
+		};
+//		console.log(count);
+		$("#num").html(count);
+		
+		if(count!=0){
+//				$(".red").html(price);
+				$.ajax({
+							type:"get",
+							url:"shopCar.php",
+							data:{
+								Id:phoneId,
+							},
+							success:function(res){
+								var resArr=res.split("&");
+								var model="魅族"+resArr[0];
+								var type=resArr[1];
+								var price="￥"+resArr[2];
+								$(".red").html(price);
+							}
+				//			error:function(){},
+						});
+			}else{
+				$(".red").html("￥");
+			}
+	});
+	$(".goPay").click(function () {
+		alert("正在结算中，请稍后...")
+		$(".list_not").show();
+		$(".list").hide();
+	})
+</script>
